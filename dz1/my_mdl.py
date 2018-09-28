@@ -9,20 +9,21 @@ def is_pal(string):
     return string == string[::-1]
 
 
-def divs(num):
+def divs(n):
+    num = abs(n)
     pdiv = 2
-    dividers = [1]
+    dividers = [-1, 1]
     if num != 1:
         while pdiv*2 <= num:
             if num % pdiv == 0:
-                dividers += [pdiv]
+                dividers += [pdiv, pdiv * -1]
             pdiv += 1
-        dividers += [num]
-    return dividers
+        dividers += [num, num * -1]
+    return sorted(dividers)
 
 
 def is_prime(num):
-    return len(divs(num)) <= 2
+    return len(divs(num)) <= 4
 
 
 def calc(n1, oper, n2):
