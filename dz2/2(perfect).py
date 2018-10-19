@@ -3,7 +3,7 @@ import my_mdl
 from unittest import TestCase, main
 
 
-class FactorialTest(TestCase):
+class PerfectTest(TestCase):
     def test_perfect_true(self):
         self.assertTrue(my_mdl.is_perfect(33550336))
         self.assertTrue(my_mdl.is_perfect(8128))   # Это будет выполняться 5 секунд, но зато красиво: здорово, правда?
