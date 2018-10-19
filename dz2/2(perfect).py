@@ -14,6 +14,12 @@ class FactorialTest(TestCase):
         self.assertFalse(my_mdl.is_perfect(8127))
         self.assertFalse(my_mdl.is_perfect(495))
 
+    def test_perfect_errors(self):
+        with self.assertRaises(ValueError):
+            my_mdl.is_perfect(1.5)
+            my_mdl.is_perfect(-1)
+            my_mdl.is_perfect('line')
+            my_mdl.is_perfect(int)
 
 main()
 

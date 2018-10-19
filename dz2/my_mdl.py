@@ -56,36 +56,33 @@ def pos_divs_sum(num):
 
 
 def is_perfect(num):
-    return num * 2 == pos_divs_sum(num)
+    if type(num) == int and num > 0:
+        return num * 2 == pos_divs_sum(num)
+    else:
+        raise ValueError('Perfection can only be a modifier of a natural number')
 
 
 @profile
 def factor(num):
     err = 'Wrong input format. Factorial is only defined for non-negative integers.'
-    if type(num) == int:
-        if num > 0:
-            ans = 1
-            for i in range(1, num+1):
-                ans *= i
-            return ans
-        elif num == 0:
-            return 1
-        else:
-            return err
+    if type(num) == int and num > 0:
+        ans = 1
+        for i in range(1, num+1):
+            ans *= i
+        return ans
+    elif num == 0:
+        return 1
     else:
-        return err
+        raise ValueError(err)
 
 
 @profile
 def factor_rec(num):
     err = 'Wrong input format. Factorial is only defined for non-negative integers.'
-    if type(num) == int:
-        if num > 0:
-            return num*factor_rec(num-1)
-        elif num == 0:
-            return 1
-        else:
-            return err
+    if type(num) == int and num > 0:
+        return num*factor_rec(num-1)
+    elif num == 0:
+        return 1
     else:
         return err
 
@@ -100,7 +97,11 @@ def pascal_str(num):
 
 
 def pascal_tri(num):
-    ans = []
-    for i in range(1, num+1):
-        ans += [pascal_str(i)]
-    return ans
+    if type(num) != int or num < 0:
+        raise ValueError('Does it seem funny for you? Please enter something else')
+    else:
+        ans = []
+        for i in range(1, num+1):
+            ans += [pascal_str(i)]
+        return ans
+
