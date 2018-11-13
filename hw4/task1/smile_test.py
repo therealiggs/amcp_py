@@ -13,6 +13,7 @@ class SmileTest(TestCase):
         self.assertFalse(smile('пРифФкИи [) >3"'))
         self.assertFalse(smile('({[)]'))
         self.assertFalse(smile('{а{ _ __ @{'))
+        self.assertFalse(smile('([)]'))
 
 
 main()
