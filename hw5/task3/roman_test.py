@@ -3,7 +3,7 @@ from unittest import TestCase, main
 
 with open('roman.txt') as file:
     text = [line[:-1] for line in file]  # Подгружаем файлик со столбцом всех
-    # римских чисел до 1999 (он создан с помощью roman_generator.py с помощью
+    # римских чисел до 1999 (он создан с помощью roman_generator.py из
     # таблички соответствия из интернета)
 
 
