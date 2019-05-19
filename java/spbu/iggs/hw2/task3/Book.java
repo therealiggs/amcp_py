@@ -1,4 +1,4 @@
-// Не забудьте поместить в правильный
+// Не забудьте поместить в правильный пакет
 package spbu.iggs.hw2.task3;
 
 public class Book {
@@ -7,27 +7,27 @@ public class Book {
     private boolean borrowed;
 
     // Создает новую книгу
-    public Book(String bookTitle) {
+    Book(String bookTitle) {
         this.title = bookTitle;
     }
 
     // Отмечает книгу как взятую
-    public void borrowed() {
+    void borrowed() {
         this.borrowed = true;
     }
 
     // Отмечает книгу как не взятую
-    public void returned() {
+    void returned() {
         this.borrowed = false;
     }
 
     // Возвращает true, если книгу уже кто-то взял
-    public boolean isBorrowed() {
+    boolean isBorrowed() {
         return this.borrowed;
     }
 
     // Возвращает название книги
-    public String getTitle() {
+    String getTitle() {
         return title;
     }
 

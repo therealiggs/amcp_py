@@ -5,12 +5,11 @@
 
  public class Library {
     private String address;
-    private static final String openinghours = "Каждый день с 9 до 17";
+    private static final String opening_hours = "Каждый день с 9 до 17";
     private ArrayList<Book> books = new ArrayList<>();
-    //Book[] books = new Book[size];
     // Сюда надо добавить недостающие методы
 
-    public void borrowBook(String title) {
+     private void borrowBook(String title) {
         int pos = -1;
         for (int i = 0; i < books.size(); i ++) {
             if (books.get(i).getTitle().equals(title)){
@@ -33,7 +32,7 @@
     }
 
 
-     public void returnBook(String title){
+      private void returnBook(String title){
         int pos = -1;
         for (int i = 0; i < books.size(); i ++) {
              if (books.get(i).getTitle().equals(title)){
@@ -56,29 +55,28 @@
      }
 
 
-     public static void printOpeningHours(){
-        System.out.println(openinghours);
+     private static void printOpeningHours(){
+        System.out.println(opening_hours);
     }
 
-    public void printAddress(){
+    private void printAddress(){
         System.out.println(address);
     }
 
-    Library(String address){
+    public Library(String address){
         this.address = address;
 
     }
-    public void addBook(Book book){
+    private void addBook(Book book){
         this.books.add(book);
         System.out.println("Книга " + (books.get(books.size() - 1).getTitle()) + " успешно добавлена");
     }
 
-    public void printAvailableBooks(){
+    private void printAvailableBooks(){
         boolean flag = true;
         if (this.books.size() != 0) {
             for (int i = 0; i < books.size(); i++) {
-                if (books.get(i).isBorrowed()) {
-                } else {
+                if (!books.get(i).isBorrowed()) {
                     System.out.println(books.get(i).getTitle()); // Если в библиотеке есть доступные книги
                     flag = false;
                 }
