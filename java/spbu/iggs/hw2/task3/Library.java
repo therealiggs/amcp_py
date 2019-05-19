@@ -1,29 +1,30 @@
  // Не забудьте поместить этот класс в нужный пакет
  package spbu.iggs.hw2.task3;
 
+ import java.util.ArrayList;
+
  public class Library {
-    private static final  int size = 10;
     private String address;
-    private int pointer = 0; // Костыль для добавления книги в библиотеку, по сути это номер заполняемой ячейки массива
     private static final String openinghours = "Каждый день с 9 до 17";
-    Book[] books = new Book[size];
+    private ArrayList<Book> books = new ArrayList<>();
+    //Book[] books = new Book[size];
     // Сюда надо добавить недостающие методы
 
     public void borrowBook(String title) {
         int pos = -1;
-        for (int i = 0; i < pointer; i ++) {
-            if (books[i].getTitle().equals(title)){
+        for (int i = 0; i < books.size(); i ++) {
+            if (books.get(i).getTitle().equals(title)){
                 pos = i;
             }
         }
 
         if (pos != -1) {
-            if (this.books[pos].isBorrowed()) {
+            if (books.get(pos).isBorrowed()) {
                 System.out.println("Извините, книга уже взята");
             }
             else {
-                this.books[pos].borrowed();
-                System.out.println("Вы успешно взяли книгу " + (books[pos].getTitle()));
+                this.books.get(pos).borrowed();
+                System.out.println("Вы успешно взяли книгу " + (books.get(pos).getTitle()));
             }
         }
         else{
@@ -34,15 +35,15 @@
 
      public void returnBook(String title){
         int pos = -1;
-        for (int i = 0; i < pointer; i ++) {
-             if (books[i].getTitle().equals(title)){
+        for (int i = 0; i < books.size(); i ++) {
+             if (books.get(i).getTitle().equals(title)){
                  pos = i;
              }
          }
 
          if (pos != -1) {
-             if (this.books[pos].isBorrowed()) {
-                 this.books[pos].returned();
+             if (this.books.get(pos).isBorrowed()) {
+                 this.books.get(pos).returned();
                  System.out.println("Вы успешно вернули книгу");
              }
              else {
@@ -68,23 +69,26 @@
 
     }
     public void addBook(Book book){
-        if (pointer <= size - 1){
-        this.books[pointer] = book;
-        System.out.println("Книга " + (books[pointer].getTitle()) + " успешно добавлена");
-        pointer += 1; // Когда я делал это задание у меня был очень плохой инет и я не мог узнать, как нормально добавлять элемент в массив
-
-        }
-        else{
-            System.out.println("В библиотеке нет места!");
-        }
+        this.books.add(book);
+        System.out.println("Книга " + (books.get(books.size() - 1).getTitle()) + " успешно добавлена");
     }
 
     public void printAvailableBooks(){
-        for (int i = 0; i < pointer; i ++){
-            if (books[i].isBorrowed()){}
-            else{
-                System.out.println(books[i].getTitle());
+        boolean flag = true;
+        if (this.books.size() != 0) {
+            for (int i = 0; i < books.size(); i++) {
+                if (books.get(i).isBorrowed()) {
+                } else {
+                    System.out.println(books.get(i).getTitle()); // Если в библиотеке есть доступные книги
+                    flag = false;
+                }
             }
+            if(flag){
+                System.out.println("Все книги арендованы"); // Если в библиотеке есть книги, но они недоступны
+            }
+        }
+        else{
+            System.out.println("В библиотеке нет книг"); // Если в библиотеке вообще нет книг
         }
     }
 
